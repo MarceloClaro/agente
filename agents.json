@@ -1,92 +1,279 @@
-[
-    {
-        "agente": "Administrador de Banco de Dados",
-        "descricao": "Um administrador de banco de dados (DBA) é responsável por projetar, implementar, manter e otimizar sistemas de banco de dados. Eles têm um profundo conhecimento de bancos de dados relacionais e não relacionais, bem como experiência em linguagens de consulta de banco de dados, como SQL. Um DBA também é responsável por garantir a integridade, segurança e desempenho dos dados em um sistema de banco de dados.",
-        "expert": "PhD completo em Sistemas de Banco de Dados"
+{
+  "name": "AutoGroq Workflow",
+  "description": "Fluxo de trabalho auto-gerado pelo AutoGroq.",
+  "sender": {
+    "type": "userproxy",
+    "config": {
+      "name": "userproxy",
+      "llm_config": false,
+      "human_input_mode": "NEVER",
+      "max_consecutive_auto_reply": 5,
+      "system_message": "Você é um assistente prestativo.",
+      "is_termination_msg": null,
+      "code_execution_config": {
+        "work_dir": null,
+        "use_docker": false
+      },
+      "default_auto_reply": "",
+      "description": null
     },
-    {
-        "agente": "Desenvolvedor Web Extraordinário",
-        "descricao": "Um desenvolvedor web extraordinário é um profissional altamente habilidoso e experiente com uma paixão por criar websites de alta qualidade e fáceis de usar. Eles têm um profundo entendimento de HTML, CSS e JavaScript, bem como um olho afiado para design e um talento para solução de problemas. Eles estão constantemente atualizados com as últimas tendências e tecnologias em desenvolvimento web e são dedicados a criar websites que sejam tanto funcionais quanto visualmente atraentes.",
-        "expert": "PhD completo em Desenvolvimento Web"
+    "timestamp": "2024-05-15T14:18:47.528888",
+    "user_id": "default",
+    "skills": []
+  },
+  "receiver": {
+    "type": "groupchat",
+    "config": {
+      "name": "group_chat_manager",
+      "llm_config": {
+        "config_list": [
+          {
+            "user_id": "default",
+            "timestamp": "2024-05-15T14:18:47.528912",
+            "model": "gpt-4",
+            "base_url": null,
+            "api_type": null,
+            "api_version": null,
+            "description": "Configuração do modelo OpenAI"
+          }
+        ],
+        "temperature": 0.55,
+        "cache_seed": 42,
+        "timeout": 600,
+        "max_tokens": null,
+        "extra_body": null
+      },
+      "human_input_mode": "NEVER",
+      "max_consecutive_auto_reply": 10,
+      "system_message": "Gerenciador de chat em grupo",
+      "is_termination_msg": null,
+      "code_execution_config": null,
+      "default_auto_reply": "",
+      "description": null
     },
-    {
-        "agente": "Educador de Matemática",
-        "descricao": "Um educador de matemática é um especialista em ensinar conceitos matemáticos complexos de uma maneira clara e compreensível. Eles têm um profundo conhecimento de diversos ramos da matemática, incluindo álgebra, geometria, cálculo e estatística. Um educador de matemática é capaz de explicar conceitos difíceis de uma maneira que os alunos possam entender e aplicar.",
-        "expert": "PhD completo em Educação Matemática"
+    "groupchat_config": {
+      "agents": [
+        {
+          "type": "assistant",
+          "config": {
+            "name": "project_lead_-_quantum_physics",
+            "llm_config": {
+              "config_list": [
+                {
+                  "user_id": "default",
+                  "timestamp": "2024-05-15T14:18:47.529016",
+                  "model": "gpt-4",
+                  "base_url": null,
+                  "api_type": null,
+                  "api_version": null,
+                  "description": "Configuração do modelo OpenAI"
+                }
+              ],
+              "temperature": 0.55,
+              "cache_seed": 42,
+              "timeout": 600,
+              "max_tokens": null,
+              "extra_body": null
+            },
+            "human_input_mode": "NEVER",
+            "max_consecutive_auto_reply": 8,
+            "system_message": "Você é um assistente prestativo que pode atuar como Líder de Projeto - Física Quântica, que gerencia o projeto, agrega o trabalho e garante uma solução robusta. Você é o coordenador principal que receberá sugestões ou conselhos de todos os outros agentes (especialista_em_computação_quântica, especialista_em_ciência_de_dados, teórico_da_física_quântica, especialista_em_hardware_de_computação_quântica, metodologista_de_pesquisa). Você deve garantir que a resposta final integre as sugestões dos outros agentes ou membros da equipe. SUA RESPOSTA FINAL DEVE OFERECER A RESOLUÇÃO COMPLETA À SOLICITAÇÃO DO USUÁRIO. Quando a solicitação do usuário for atendida e todas as perspectivas estiverem integradas, você pode responder com TERMINAR.",
+            "is_termination_msg": null,
+            "code_execution_config": null,
+            "default_auto_reply": "",
+            "description": null
+          },
+          "timestamp": "2024-05-15T14:18:47.528888",
+          "user_id": "default",
+          "skills": []
+        },
+        {
+          "type": "assistant",
+          "config": {
+            "name": "quantum_computing_specialist",
+            "llm_config": {
+              "config_list": [
+                {
+                  "user_id": "default",
+                  "timestamp": "2024-05-15T14:18:47.529035",
+                  "model": "gpt-4",
+                  "base_url": null,
+                  "api_type": null,
+                  "api_version": null,
+                  "description": "Configuração do modelo OpenAI"
+                }
+              ],
+              "temperature": 0.55,
+              "cache_seed": 42,
+              "timeout": 600,
+              "max_tokens": null,
+              "extra_body": null
+            },
+            "human_input_mode": "NEVER",
+            "max_consecutive_auto_reply": 8,
+            "system_message": "Você é um assistente prestativo que pode atuar como Especialista em Computação Quântica, que projeta e desenvolve algoritmos e simulações quânticas.",
+            "is_termination_msg": null,
+            "code_execution_config": null,
+            "default_auto_reply": "",
+            "description": null
+          },
+          "timestamp": "2024-05-15T14:18:47.528888",
+          "user_id": "default",
+          "skills":
+
+ []
+        },
+        {
+          "type": "assistant",
+          "config": {
+            "name": "data_science_expert",
+            "llm_config": {
+              "config_list": [
+                {
+                  "user_id": "default",
+                  "timestamp": "2024-05-15T14:18:47.529051",
+                  "model": "gpt-4",
+                  "base_url": null,
+                  "api_type": null,
+                  "api_version": null,
+                  "description": "Configuração do modelo OpenAI"
+                }
+              ],
+              "temperature": 0.55,
+              "cache_seed": 42,
+              "timeout": 600,
+              "max_tokens": null,
+              "extra_body": null
+            },
+            "human_input_mode": "NEVER",
+            "max_consecutive_auto_reply": 8,
+            "system_message": "Você é um assistente prestativo que pode atuar como Especialista em Ciência de Dados, que analisa e interpreta dados complexos em física e computação quântica.",
+            "is_termination_msg": null,
+            "code_execution_config": null,
+            "default_auto_reply": "",
+            "description": null
+          },
+          "timestamp": "2024-05-15T14:18:47.528888",
+          "user_id": "default",
+          "skills": []
+        },
+        {
+          "type": "assistant",
+          "config": {
+            "name": "quantum_physics_theorist",
+            "llm_config": {
+              "config_list": [
+                {
+                  "user_id": "default",
+                  "timestamp": "2024-05-15T14:18:47.529064",
+                  "model": "gpt-4",
+                  "base_url": null,
+                  "api_type": null,
+                  "api_version": null,
+                  "description": "Configuração do modelo OpenAI"
+                }
+              ],
+              "temperature": 0.55,
+              "cache_seed": 42,
+              "timeout": 600,
+              "max_tokens": null,
+              "extra_body": null
+            },
+            "human_input_mode": "NEVER",
+            "max_consecutive_auto_reply": 8,
+            "system_message": "Você é um assistente prestativo que pode atuar como Teórico da Física Quântica, que desenvolve e aplica modelos teóricos na física quântica.",
+            "is_termination_msg": null,
+            "code_execution_config": null,
+            "default_auto_reply": "",
+            "description": null
+          },
+          "timestamp": "2024-05-15T14:18:47.528888",
+          "user_id": "default",
+          "skills": []
+        },
+        {
+          "type": "assistant",
+          "config": {
+            "name": "quantum_computing_hardware_specialist",
+            "llm_config": {
+              "config_list": [
+                {
+                  "user_id": "default",
+                  "timestamp": "2024-05-15T14:18:47.529079",
+                  "model": "gpt-4",
+                  "base_url": null,
+                  "api_type": null,
+                  "api_version": null,
+                  "description": "Configuração do modelo OpenAI"
+                }
+              ],
+              "temperature": 0.55,
+              "cache_seed": 42,
+              "timeout": 600,
+              "max_tokens": null,
+              "extra_body": null
+            },
+            "human_input_mode": "NEVER",
+            "max_consecutive_auto_reply": 8,
+            "system_message": "Você é um assistente prestativo que pode atuar como Especialista em Hardware de Computação Quântica, que projeta e desenvolve arquiteturas de hardware de computação quântica.",
+            "is_termination_msg": null,
+            "code_execution_config": null,
+            "default_auto_reply": "",
+            "description": null
+          },
+          "timestamp": "2024-05-15T14:18:47.528888",
+          "user_id": "default",
+          "skills": []
+        },
+        {
+          "type": "assistant",
+          "config": {
+            "name": "research_methodologist",
+            "llm_config": {
+              "config_list": [
+                {
+                  "user_id": "default",
+                  "timestamp": "2024-05-15T14:18:47.529092",
+                  "model": "gpt-4",
+                  "base_url": null,
+                  "api_type": null,
+                  "api_version": null,
+                  "description": "Configuração do modelo OpenAI"
+                }
+              ],
+              "temperature": 0.55,
+              "cache_seed": 42,
+              "timeout": 600,
+              "max_tokens": null,
+              "extra_body": null
+            },
+            "human_input_mode": "NEVER",
+            "max_consecutive_auto_reply": 8,
+            "system_message": "Você é um assistente prestativo que pode atuar como Metodologista de Pesquisa, que garante padrões e metodologia rigorosos de pesquisa científica.",
+            "is_termination_msg": null,
+            "code_execution_config": null,
+            "default_auto_reply": "",
+            "description": null
+          },
+          "timestamp": "2024-05-15T14:18:47.528888",
+          "user_id": "default",
+          "skills": []
+        }
+      ],
+      "admin_name": "Admin",
+      "messages": [],
+      "max_round": 10,
+      "speaker_selection_method": "auto",
+      "allow_repeat_speaker": true
     },
-    {
-        "agente": "Especialista em Marketing",
-        "descricao": "Um especialista em marketing é alguém com habilidades especializadas em promover e vender produtos ou serviços. Eles são capazes de criar estratégias de marketing eficazes para alcançar o público-alvo de uma empresa e gerar interesse em seus produtos ou serviços. Um especialista em marketing também pode ter conhecimento em áreas como publicidade, relações públicas e pesquisa de mercado.",
-        "expert": "PhD completo em Marketing"
-    },
-    {
-        "agente": "Engenheiro de Prompt",
-        "descricao": "Um engenheiro de prompt é um profissional que cria e otimiza prompts para sistemas de inteligência artificial, como chatbots e assistentes virtuais. Eles são especialistas em linguagem natural e têm habilidades avançadas em programação e análise de dados. O objetivo de um engenheiro de prompt é criar prompts que sejam claros, concisos e eficazes em obter as informações necessárias dos usuários.",
-        "expert": "PhD completo em Engenharia de Prompt"
-    },
-    {
-        "agente": "Desenvolvedor Groq e CrewAI",
-        "descricao": "Um desenvolvedor Groq e CrewAI é um profissional altamente qualificado e experiente em trabalhar com as tecnologias Groq e CrewAI. Eles têm um profundo conhecimento dessas tecnologias e são capazes de criar soluções inovadoras e eficazes usando-as. Um desenvolvedor Groq e CrewAI pode trabalhar em uma variedade de projetos, desde chatbots simples até sistemas de inteligência artificial avançados.",
-        "expert": "PhD completo em Desenvolvimento com Groq e CrewAI"
-    },
-    {
-        "agente": "Engenheiro de Dados",
-        "descricao": "Um engenheiro de dados é responsável por projetar, construir e manter sistemas de dados e bancos de dados. Eles têm habilidades em programação, modelagem de dados, ETL (extração, transformação e carga), e são proficientes em ferramentas e tecnologias de banco de dados, como SQL e NoSQL.",
-        "expert": "PhD completo em Engenharia de Dados"
-    },
-    {
-        "agente": "Cientista de Dados",
-        "descricao": "Um cientista de dados é um profissional que coleta, analisa e interpreta grandes volumes de dados para obter insights e informar a tomada de decisões. Eles têm habilidades em estatística, machine learning, programação e visualização de dados.",
-        "expert": "PhD completo em Ciência de Dados"
-    },
-    {
-        "agente": "Analista de Dados",
-        "descricao": "Um analista de dados é responsável por coletar, processar e analisar dados para identificar tendências, padrões e insights que ajudem a orientar as decisões de negócios. Eles têm habilidades em análise estatística, programação e ferramentas de visualização de dados.",
-        "expert": "PhD completo em Análise de Dados"
-    },
-    {
-        "agente": "Especialista em Segurança Cibernética",
-        "descricao": "Um especialista em segurança cibernética é responsável por proteger os sistemas de computador e redes de uma organização contra ataques cibernéticos. Eles têm habilidades em identificar vulnerabilidades, desenvolver estratégias de segurança e responder a incidentes de segurança.",
-        "expert": "PhD completo em Segurança Cibernética"
-    },
-    {
-        "agente": "Especialista em Cloud Computing",
-        "descricao": "Um especialista em cloud computing é responsável por projetar, implementar e gerenciar soluções em nuvem para empresas. Eles têm habilidades em arquitetura de nuvem, migração de dados, segurança em nuvem e são proficientes em plataformas de nuvem como AWS, Azure e Google Cloud Platform.",
-        "expert": "PhD completo em Cloud Computing"
-    },
-    {
-        "agente": "Especialista em UX/UI",
-        "descricao": "Um especialista em UX/UI é responsável por projetar a experiência do usuário e a interface de usuário de um produto ou serviço digital. Eles têm habilidades em design gráfico, prototipagem, usabilidade e estão focados em criar experiências digitais intuitivas e agradáveis.",
-        "expert": "PhD completo em Experiência do Usuário e Interface do Usuário"
-    },
-    {
-        "agente": "Especialista em IA e Machine Learning",
-        "descricao": "Um especialista em IA e machine learning é responsável por desenvolver e implementar algoritmos de machine learning e inteligência artificial para resolver problemas complexos. Eles têm habilidades em programação, estatística, matemática e são capazes de aplicar técnicas de aprendizado de máquina em diversos domínios.",
-        "expert": "PhD completo em Inteligência Artificial e Machine Learning"
-    },
-    {
-        "agente": "Engenheiro de Software",
-        "descricao": "Um engenheiro de software é responsável por projetar, desenvolver, testar e manter software. Eles têm habilidades em programação, engenharia de software e são proficientes em linguagens de programação como Java, Python, C++.",
-        "expert": "PhD completo em Engenharia de Software"
-    },
-    {
-        "agente": "Analista de Negócios",
-        "descricao": "Um analista de negócios é responsável por analisar as operações de uma empresa para identificar oportunidades de melhoria. Eles têm habilidades em análise de dados, modelagem de negócios, e são capazes de traduzir requisitos de negócios em soluções tecnológicas.",
-        "expert": "PhD completo em Análise de Negócios"
-    },
-    {
-        "agente": "Especialista em Redes",
-        "descricao": "Um especialista em redes é responsável por projetar, implementar e gerenciar redes de computadores para garantir a comunicação eficaz entre os sistemas. Eles têm habilidades em protocolos de rede, segurança de rede e são capazes de resolver problemas de conectividade.",
-        "expert": "PhD completo em Redes de Computadores"
-    },
-    {
-        "agente": "Especialista em SEO",
-        "descricao": "Um especialista em SEO é responsável por otimizar o conteúdo de um site para melhorar sua classificação nos resultados dos mecanismos de busca. Eles têm habilidades em pesquisa de palavras-chave, otimização de conteúdo e link building.",
-        "expert": "PhD completo em Otimização de Mecanismos de Busca"
-    },
-    {
-        "agente": "Engenheiro de Computação Quântica",
-        "descricao": "Um engenheiro de computação quântica é responsável por projetar, desenvolver e implementar algoritmos quânticos para computadores quânticos. Eles têm habilidades em programação quântica, criptografia quântica e são proficientes em ferramentas e bibliotecas como Qiskit e D-Wave.",
-        "expert": "PhD completo em Computação Quântica"
-    }
-]
+    "timestamp": "2024-05-15T14:18:47
+
+.528888",
+    "user_id": "default",
+    "skills": []
+  },
+  "type": "groupchat",
+  "user_id": "default",
+  "timestamp": "2024-05-15T14:18:47.528888",
+  "summary_method": "last"
+}
