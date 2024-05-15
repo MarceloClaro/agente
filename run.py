@@ -40,16 +40,11 @@ def save_expert(expert_title: str, expert_description: str):
         json.dump(agents, file, indent=4)
         file.truncate()
 
-def fetch_assistant_response(user_input: str, model_name: str, temperature: float, agent_selection: str) -> Tuple[str, str]:
+def fetch_assistant_response(user_input: str, model_name: str, temperature: float, agent_selection: str, groq_api_key: str) -> Tuple[str, str]:
     phase_two_response = ""
     expert_title = ""
 
     try:
-        secrets = toml.load("secrets.toml")
-        groq_api_key = secrets.get("GROQ_API_KEY")
-        if not groq_api_key:
-            raise ValueError("Chave de API GROQ_API_KEY não encontrada no arquivo secrets.toml.")
-
         client = Groq(api_key=groq_api_key)
 
         def get_completion(prompt: str) -> str:
@@ -67,12 +62,24 @@ def fetch_assistant_response(user_input: str, model_name: str, temperature: floa
             )
             return completion.choices[0].message.content
 
-        # Recuperação de informações relevantes para a pergunta do usuário
-        retrieval_prompt = f"Recupere informações relevantes para responder à pergunta: {user_input}"
-        retrieval_response = get_completion(retrieval_prompt)
+        if agent_selection == "Criar (ou escolher) um especialista...":
+            phase_one_prompt = f"Atue como engenheiro de prompt especialista. Analise a seguinte entrada para determinar o título e as características do melhor especialista para responder à pergunta. Comece a resposta com o título do especialista seguido de um ponto ['.'], depois forneça uma descrição concisa desse especialista: {user_input}"
+            phase_one_response = get_completion(phase_one_prompt)
+            first_period_index = phase_one_response.find(".")
+            expert_title = phase_one_response[:first_period_index].strip()
+            expert_description = phase_one_response[first_period_index + 1:].strip()
+            save_expert(expert_title, expert_description)
+        else:
+            with open(FILEPATH, 'r') as file:
+                agents = json.load(file)
+                agent_found = next((agent for agent in agents if agent["agente"] == agent_selection), None)
+                if agent_found:
+                    expert_title = agent_found["agente"]
+                    expert_description = agent_found["descricao"]
+                else:
+                    raise ValueError("Especialista selecionado não encontrado no arquivo.")
 
-        # Incorporação das informações recuperadas no prompt da fase dois
-        phase_two_prompt = f"Atue como {expert_title}, um especialista no assunto, e forneça uma resposta completa e bem formatada para a seguinte pergunta: {user_input}\n\nInformações recuperadas: {retrieval_response}"
+        phase_two_prompt = f"Atue como {expert_title}, um especialista no assunto, e forneça uma resposta completa e bem formatada para a seguinte pergunta: {user_input}"
         phase_two_response = get_completion(phase_two_prompt)
 
     except Exception as e:
@@ -81,13 +88,8 @@ def fetch_assistant_response(user_input: str, model_name: str, temperature: floa
 
     return expert_title, phase_two_response
 
-def refine_response(expert_title: str, phase_two_response: str, user_input: str, model_name: str, temperature: float) -> str:
+def refine_response(expert_title: str, phase_two_response: str, user_input: str, model_name: str, temperature: float, groq_api_key: str) -> str:
     try:
-        secrets = toml.load("secrets.toml")
-        groq_api_key = secrets.get("GROQ_API_KEY")
-        if not groq_api_key:
-            raise ValueError("Chave de API GROQ_API_KEY não encontrada no arquivo secrets.toml.")
-
         client = Groq(api_key=groq_api_key)
 
         def get_completion(prompt: str) -> str:
@@ -126,6 +128,7 @@ with col1:
     agent_selection = st.selectbox("Escolha um Especialista", options=agent_options, index=0, key="selecao_agente")
     model_name = st.selectbox("Escolha um Modelo", list(MODEL_MAX_TOKENS.keys()), index=0, key="nome_modelo")
     temperature = st.slider("Nível de Criatividade", min_value=0.0, max_value=1.0, value=0.0, step=0.01, key="temperatura")
+    groq_api_key = st.text_input("Chave da API Groq:", key="groq_api_key")
     max_tokens = get_max_tokens(model_name)
     st.write(f"Número Máximo de Tokens para o modelo selecionado: {max_tokens}")
 
@@ -146,13 +149,13 @@ with col2:
     container_saida = st.container()
 
     if fetch_clicked:
-        st.session_state.descricao_especialista_ideal, st.session_state.resposta_assistente = fetch_assistant_response(user_input, model_name, temperature, agent_selection)
+        st.session_state.descricao_especialista_ideal, st.session_state.resposta_assistente = fetch_assistant_response(user_input, model_name, temperature, agent_selection, groq_api_key)
         st.session_state.resposta_original = st.session_state.resposta_assistente
         st.session_state.resposta_refinada = ""
 
     if refine_clicked:
         if st.session_state.resposta_assistente:
-            st.session_state.resposta_refinada = refine_response(st.session_state.descricao_especialista_ideal, st.session_state.resposta_assistente, user_input, model_name, temperature)
+            st.session_state.resposta_refinada = refine_response(st.session_state.descricao_especialista_ideal, st.session_state.resposta_assistente, user_input, model_name, temperature, groq_api_key)
         else:
             st.warning("Por favor, busque uma resposta antes de refinar.")
 
